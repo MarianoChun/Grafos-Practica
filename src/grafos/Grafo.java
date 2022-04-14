@@ -32,14 +32,23 @@ public class Grafo {
 		verificarDistintos(i, j);
 		verificarVertice(i);
 		verificarVertice(j);
+		verificarGrafoConPeso();
 		A[i][j] = A[j][i] = true;
+		
 		pesosA[i][j] = pesosA[j][i] = peso;
+	}
+
+	private void verificarGrafoConPeso() {
+		if(!esConPeso) {
+			throw new IllegalArgumentException("Las aristas del grafo no tiene peso");
+		}
 	}
 	
 	public int obtenerPesoArista(int i, int j) {
 		verificarVertice(i);
 		verificarVertice(j);
 		verificarExisteArista(i, j);
+		verificarGrafoConPeso();
 		
 		return pesosA[i][j];
 	}
