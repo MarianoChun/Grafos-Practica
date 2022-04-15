@@ -23,8 +23,27 @@ public class PrimTest {
 		
 		g.agregarArista(4, 1, 7);
 
+		assertEquals(14, new Prim(g).obtenerArbolGeneradorMinimo(g, 0).peso());	
+	}
+	
+	@Test
+	public void AGMPrimEqualsTest() {
+		Grafo g = new Grafo(10, true);
+		g.agregarArista(0, 1, 15);
+		g.agregarArista(0, 3, 20);
+		g.agregarArista(1, 3, 4);
 		
-		assertEquals(16, Prim.obtenerArbolGeneradorMinimo(g, 0).peso());
+		g.agregarArista(3, 4, 20);
+		g.agregarArista(3, 5, 20);
+		g.agregarArista(4, 5, 30);
+
+
+		Grafo AGMEsperado = new Grafo(6, true);
+		AGMEsperado.agregarArista(0, 1, 15);
+		AGMEsperado.agregarArista(1, 3, 4);
+		AGMEsperado.agregarArista(3, 4, 20);
+		AGMEsperado.agregarArista(3, 5, 20);
 		
+		assertTrue(AGMEsperado.equals(new Prim(g).obtenerArbolGeneradorMinimo(g, 0)));	
 	}
 }

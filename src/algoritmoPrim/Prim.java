@@ -1,49 +1,71 @@
 package algoritmoPrim;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import grafos.Grafo;
 
 public class Prim {
-	private static Set<Integer> V = new HashSet<Integer>();
-	private static Grafo E;
+	private Set<Integer> V = new HashSet<Integer>();
+	private Grafo E;
 	
-	public static Grafo obtenerArbolGeneradorMinimo(Grafo g, int vertice){
+	public Prim(Grafo g) {
+		if(!g.esGrafoConPeso()) {
+			throw new IllegalArgumentException("El grafo debe tener peso");
+		}
 		E = new Grafo(g.tamano(), true);
+	}
+	public Grafo obtenerArbolGeneradorMinimo(Grafo g, int vertice){
 		V.add(vertice);
 		int i = 1;
-		int vecinoMenorPeso;
-		int pesoAristaNueva;
+		int uMin = vertice;
+		int vMin = 0;
+		int pesoMin;
 		
 		while(i <= g.tamano() - 1) {
-			vecinoMenorPeso = obtenerVecinoConAristaMenorPeso(g, vertice);
-			pesoAristaNueva = g.obtenerPesoArista(vertice, vecinoMenorPeso);
-			E.agregarArista(vertice, vecinoMenorPeso, pesoAristaNueva);
-			V.add(vecinoMenorPeso);
-			vertice = vecinoMenorPeso;
+			pesoMin = Integer.MAX_VALUE;
+			Set<Integer> vecinosU;
+
+			for(int u : V) {
+				vecinosU = g.vecinos(u);
+				if(!V.containsAll(vecinosU)) {		
+					int[] aristaMin = obtenerVecinoMenorPeso(g, u, vecinosU);
+					pesoMin = Math.min(pesoMin, aristaMin[2]);
+					if(pesoMin == aristaMin[2]) {
+						uMin = aristaMin[0];
+						vMin = aristaMin[1];
+					}
+				}
+			}
+			E.agregarArista(uMin, vMin, pesoMin);
+			V.add(vMin);
 			i++;
 		}	
 		return E;	
 	}
-	private static int obtenerVecinoConAristaMenorPeso(Grafo g, int vertice) {
-		Set<Integer> vecinos = g.vecinos(vertice);
-		int pesoMin = Integer.MAX_VALUE;
-		int vecinoMin = vertice;
+
+	private int[] obtenerVecinoMenorPeso(Grafo g, int vertice, Set<Integer> vecinos) {
+		int vecinoMinimo = 0;
+		int pesoMenor = Integer.MAX_VALUE;
 		int pesoVecinoActual;
-		
-		for (int vecino : vecinos){
-			if(!V.contains((Integer)vecino)) {
+		for(int vecino : vecinos) {
+			if(!esVerticeMarcado(vecino)) {
 				pesoVecinoActual = g.obtenerPesoArista(vertice, vecino);
-				pesoMin = Math.min(pesoVecinoActual, pesoMin);
-				if(pesoMin == pesoVecinoActual) {
-					vecinoMin = vecino;
+				pesoMenor = Math.min(pesoMenor, pesoVecinoActual);
+				if(pesoMenor == pesoVecinoActual) {
+					vecinoMinimo = vecino;
 				}
 			}
 		}
-
-		return vecinoMin;
+		
+		return  new int[]{vertice, vecinoMinimo, pesoMenor};
 	}
+	
+	private boolean esVerticeMarcado(int vertice) {
+		return V.contains(vertice);
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

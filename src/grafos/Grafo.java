@@ -1,6 +1,8 @@
 package grafos;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Grafo {
@@ -44,6 +46,7 @@ public class Grafo {
 		}
 	}
 	
+	
 	public int obtenerPesoArista(int i, int j) {
 		verificarVertice(i);
 		verificarVertice(j);
@@ -69,7 +72,7 @@ public class Grafo {
 			pesosA[i][j] = pesosA[j][i] = 0;
 		}
 	}
-	private boolean esGrafoConPeso() {
+	public boolean esGrafoConPeso() {
 		return esConPeso;
 	}
 
@@ -124,5 +127,18 @@ public class Grafo {
 		
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Grafo other = (Grafo) obj;
+		return Arrays.equals(A, other.A) && esConPeso == other.esConPeso && Arrays.equals(pesosA, other.pesosA);
+	}
+
+	
 }
 
