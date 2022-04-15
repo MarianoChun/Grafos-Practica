@@ -50,4 +50,16 @@ public class GrafosConPesoTest {
 		g.obtenerPesoArista(6, 8);
 
 	}
+	
+	@Test
+	public void obtenerPesoGrafoTest() {
+		Grafo g = new Grafo(4,true);
+		
+		g.agregarArista(0, 1, 5);
+		g.agregarArista(1, 2, 3);
+		g.agregarArista(0, 2, 2);
+		g.agregarArista(2, 3, 2);
+
+		assertEquals(12, g.peso());
+	}
 }

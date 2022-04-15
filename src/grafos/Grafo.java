@@ -97,6 +97,17 @@ public class Grafo {
 		return vecinos;
 	}
 	
+	public int peso() {
+		int sumatoriaPesos = 0;
+		for(int col = 0; col < A.length;col++) {
+			for(int fila = 0; fila < A.length;fila++) {
+				if(existeArista(col, fila)) {
+					sumatoriaPesos += obtenerPesoArista(col, fila);
+				}
+			}
+		}
+		return sumatoriaPesos/2;
+	}
 	private void verificarDistintos(int i, int j) {
 		if (i == j) {
 			throw new IllegalArgumentException("Error: Los vertices deben ser distintos");

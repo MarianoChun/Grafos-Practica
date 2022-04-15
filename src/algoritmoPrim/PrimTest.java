@@ -32,7 +32,7 @@ public class PrimTest {
 	}
 
 	@Test
-	public void AGMPrimSegundoTest() {
+	public void AGMPrimTest() {
 		fail("Not yet implemented");
 	}
 }
