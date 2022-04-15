@@ -28,22 +28,23 @@ public class PrimTest {
 	
 	@Test
 	public void AGMPrimEqualsTest() {
-		Grafo g = new Grafo(10, true);
+		Grafo g = new Grafo(5, true);
 		g.agregarArista(0, 1, 15);
-		g.agregarArista(0, 3, 20);
-		g.agregarArista(1, 3, 4);
+		g.agregarArista(0, 2, 20);
+		g.agregarArista(1, 2, 4);
 		
-		g.agregarArista(3, 4, 20);
-		g.agregarArista(3, 5, 20);
-		g.agregarArista(4, 5, 30);
+		g.agregarArista(2, 3, 20);
+		g.agregarArista(2, 4, 20);
+		g.agregarArista(3, 4, 30);
 
-
-		Grafo AGMEsperado = new Grafo(6, true);
+		Grafo AGMEsperado = new Grafo(5, true);
 		AGMEsperado.agregarArista(0, 1, 15);
-		AGMEsperado.agregarArista(1, 3, 4);
-		AGMEsperado.agregarArista(3, 4, 20);
-		AGMEsperado.agregarArista(3, 5, 20);
+		AGMEsperado.agregarArista(1, 2, 4);
+		AGMEsperado.agregarArista(2, 3, 20);
+		AGMEsperado.agregarArista(2, 4, 20);
 		
-		assertTrue(AGMEsperado.equals(new Prim(g).obtenerArbolGeneradorMinimo(g, 0)));	
+		Grafo AGMG = new Prim(g).obtenerArbolGeneradorMinimo(g, 0);
+	
+		assertTrue(AGMEsperado.equals(AGMG));	
 	}
 }

@@ -62,4 +62,38 @@ public class GrafosConPesoTest {
 
 		assertEquals(12, g.peso());
 	}
+	
+	@Test
+	public void equalsTrueGrafoConPeso() {
+		Grafo g = new Grafo(4,true);
+		
+		g.agregarArista(0, 1, 51);
+		g.agregarArista(1, 2, 25);
+		g.agregarArista(2, 3, 6);
+		g.agregarArista(0, 3, 5);
+		
+		Grafo otroGrafo = new Grafo(4, true);
+		otroGrafo.agregarArista(0, 1, 51);
+		otroGrafo.agregarArista(1, 2, 25);
+		otroGrafo.agregarArista(2, 3, 6);
+		otroGrafo.agregarArista(0, 3, 5);
+		assertTrue(g.equals(otroGrafo));
+	}
+	
+	@Test
+	public void equalsFalseGrafosConYSinPeso() {
+		Grafo g = new Grafo(4,true);
+		
+		g.agregarArista(0, 2, 51);
+		g.agregarArista(1, 2, 25);
+		g.agregarArista(2, 3, 6);
+		g.agregarArista(1, 3, 5);
+		
+		Grafo otroGrafo = new Grafo(4, false);
+		otroGrafo.agregarArista(0, 2);
+		otroGrafo.agregarArista(1, 2);
+		otroGrafo.agregarArista(2, 3);
+		otroGrafo.agregarArista(1, 3);
+		assertFalse(g.equals(otroGrafo));
+	}
 }

@@ -22,7 +22,7 @@ public class Grafo {
 		}
 		this.esConPeso = esConPeso;
 	}
-	
+
 	public void agregarArista(int i, int j) {
 		verificarDistintos(i, j);
 		verificarVertice(i);
@@ -143,7 +143,16 @@ public class Grafo {
 		if (getClass() != obj.getClass())
 			return false;
 		Grafo other = (Grafo) obj;
-		return Arrays.equals(A, other.A) && esConPeso == other.esConPeso && Arrays.equals(pesosA, other.pesosA);
+		if(this.tamano() != other.tamano()) {
+			return false;
+		}
+		if(esConPeso != other.esConPeso) {
+			return false;
+		}
+		if(esConPeso == other.esConPeso) {
+			return Arrays.deepEquals(A, other.A) && Arrays.deepEquals(pesosA, other.pesosA);
+		}
+		return Arrays.deepEquals(A, other.A);
 	}
 
 	

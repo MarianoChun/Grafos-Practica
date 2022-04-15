@@ -22,10 +22,10 @@ public class Prim {
 		int uMin = vertice;
 		int vMin = 0;
 		int pesoMin;
+		Set<Integer> vecinosU;
 		
 		while(i <= g.tamano() - 1) {
 			pesoMin = Integer.MAX_VALUE;
-			Set<Integer> vecinosU;
 
 			for(int u : V) {
 				vecinosU = g.vecinos(u);
@@ -38,6 +38,7 @@ public class Prim {
 					}
 				}
 			}
+
 			E.agregarArista(uMin, vMin, pesoMin);
 			V.add(vMin);
 			i++;
