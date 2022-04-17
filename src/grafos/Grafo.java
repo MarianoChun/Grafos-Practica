@@ -12,6 +12,7 @@ public class Grafo {
 	private boolean [][] A;
 	private int [][] pesosA;
 	private boolean esConPeso;
+	
 	public Grafo(int vertices) {
 		A = new boolean[vertices][vertices];
 	}
@@ -72,6 +73,7 @@ public class Grafo {
 
 	public void eliminarArista(int i, int j) {
 		verificarDistintos(i, j);
+		verificarExisteArista(i,j);
 		verificarVertice(i);
 		verificarVertice(j);
 		A[i][j] = A[j][i] = false;
@@ -94,6 +96,7 @@ public class Grafo {
 	public int tamano() {
 		return A.length;
 	}
+	
 	public Set<Integer> vecinos(int i){
 		// Siempre conviene que los valores de retorno sean interfaces de java (Set, List, etc)
 		// Ya que podemos utilizar ya sea un HashSet, TreeSet, etc.
@@ -145,7 +148,7 @@ public class Grafo {
 		if(i < 0) {
 			throw new IllegalArgumentException("El vertice no puede ser negativo: " + i);
 		}
-		if(i > A.length) {
+		if(i >= A.length) {
 			throw new IllegalArgumentException("Los vertices deben estar entre 0 v |V| - 1");
 		}
 		
