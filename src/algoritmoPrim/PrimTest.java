@@ -14,7 +14,7 @@ public class PrimTest {
 		g.agregarArista(0, 1, 10);
 		g.agregarArista(0, 2, 1);
 		g.agregarArista(0, 3, 15);
-		
+
 		g.agregarArista(2, 3, 5);
 		g.agregarArista(2, 4, 2);
 		

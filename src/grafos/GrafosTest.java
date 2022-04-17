@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class GrafosConPesoTest {
+public class GrafosTest {
 
 	@Test
 	public void obtenerPesoTest() {

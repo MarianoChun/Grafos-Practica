@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+
 public class Grafo {
 	// Representado en matriz de adyacencia
 	// MatrizDeAdyacencia = A
@@ -118,6 +119,22 @@ public class Grafo {
 		}
 		return sumatoriaPesos/2;
 	}
+	
+	public void imprimirAristas() {
+		
+		for (int col = 0; col < A.length; col++) {
+			for (int fila = 0; fila < A.length; fila++) {
+				if (existeArista(col, fila)) {
+					if(esConPeso) {
+						System.out.println("(" + col + "," + fila + "," + pesosA[col][fila] + ")");
+					} else {
+						System.out.println("(" + col + "," + fila + ")");
+					}
+				}
+			}
+		}		
+
+	}
 	private void verificarDistintos(int i, int j) {
 		if (i == j) {
 			throw new IllegalArgumentException("Error: Los vertices deben ser distintos");
@@ -155,6 +172,5 @@ public class Grafo {
 		return Arrays.deepEquals(A, other.A);
 	}
 
-	
 }
 
