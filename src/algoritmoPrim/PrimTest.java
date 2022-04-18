@@ -10,29 +10,27 @@ public class PrimTest {
 
 	@Test
 	public void AGMPrimPrimerTest() {
-		Grafo g = new Grafo(9);
-		g.agregarArista(0, 1);
-		g.agregarArista(0, 2);
-		g.agregarArista(0, 3);
-		g.agregarArista(1, 3);
-		g.agregarArista(1, 6);
-		g.agregarArista(3, 6);
-		g.agregarArista(3, 4);
-		g.agregarArista(3, 5);
-		g.agregarArista(3, 2);
-		g.agregarArista(6, 5);
-		g.agregarArista(6, 8);
-		g.agregarArista(5, 7);
-		g.agregarArista(5, 8);
-		g.agregarArista(8, 7);
-		g.agregarArista(7, 4);
+		Grafo g = new Grafo(5, true);
+		g.agregarArista(0, 1, 7);
+		g.agregarArista(0, 2, 5);
+		g.agregarArista(0, 4, 8);
 		
-		Grafo AGMEsperado = new Grafo(8);
+		g.agregarArista(1, 4, 11);
+		g.agregarArista(1, 2, 2);
+		g.agregarArista(1, 3, 8);
 		
+		g.agregarArista(2, 3, 3);
+		g.agregarArista(3, 4, 15);
+		
+		
+		Grafo AGMEsperado = new Grafo(5, true);
+		AGMEsperado.agregarArista(0, 2, 5);	
+		AGMEsperado.agregarArista(0, 4, 8);
+		AGMEsperado.agregarArista(2, 1, 2);
+		AGMEsperado.agregarArista(2, 3, 3);
+		
+		assertEquals(AGMEsperado, Prim.obtenerArbolGeneradorMinimo(g));
 	}
 
-	@Test
-	public void AGMPrimSegundoTest() {
-		fail("Not yet implemented");
-	}
+	
 }
