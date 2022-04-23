@@ -15,14 +15,30 @@ public class GrafoNDPonderadoTest {
 		assertEquals(30, g.obtenerPesoArista(2, 3));
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void agregarAristaIguales() {
+		GrafoNDPonderado g = new GrafoNDPonderado(4);
+		
+		g.agregarArista(2, 2, 30);	
+	}
+	
 	@Test
 	public void obtenerPesoInversoTest() {
 		GrafoNDPonderado g = new GrafoNDPonderado(4);
 		
 		g.agregarArista(1, 2, 10);
-		g.agregarArista(2, 1, 4);
 		
 		assertEquals(10, g.obtenerPesoArista(2, 1));
+	}
+	
+	@Test
+	public void cambiarPesoAristaExistente() {
+		GrafoNDPonderado g = new GrafoNDPonderado(6);
+		
+		g.agregarArista(4, 5, 2);
+		g.agregarArista(5, 4, 1);
+		
+		assertEquals(2, g.obtenerPesoArista(5, 4));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
