@@ -10,7 +10,7 @@ public class GrafoDPonderadoTest {
 
 	@Test
 	public void obtenerPesoTest() {
-		GrafoDirigidoPonderado g = new GrafoDirigidoPonderado(4);
+		GrafoDPonderado g = new GrafoDPonderado(4);
 		
 		g.agregarArista(1, 2, 10);
 		
@@ -19,7 +19,7 @@ public class GrafoDPonderadoTest {
 	
 	@Test
 	public void obtenerPesoInversoTest() {
-		GrafoDirigidoPonderado g = new GrafoDirigidoPonderado(4);
+		GrafoDPonderado g = new GrafoDPonderado(4);
 		
 		g.agregarArista(1, 2, 10);
 		g.agregarArista(2, 1, 4);
@@ -29,7 +29,7 @@ public class GrafoDPonderadoTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void obtenerPesoAristaInexistenteTest() {
-		GrafoDirigidoPonderado g = new GrafoDirigidoPonderado(6);
+		GrafoDPonderado g = new GrafoDPonderado(6);
 		
 		g.obtenerPesoArista(4, 5);
 
@@ -37,7 +37,7 @@ public class GrafoDPonderadoTest {
 	
 	@Test
 	public void agregarPesoSinEspecificarTest() {
-		GrafoDirigidoPonderado g = new GrafoDirigidoPonderado(4);
+		GrafoDPonderado g = new GrafoDPonderado(4);
 		
 		g.agregarArista(0, 1);
 		
@@ -47,7 +47,7 @@ public class GrafoDPonderadoTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void obtenerPesoAristaEliminada() {
-		GrafoDirigidoPonderado g = new GrafoDirigidoPonderado(9);
+		GrafoDPonderado g = new GrafoDPonderado(9);
 		
 		g.agregarArista(6, 8, 5);
 		g.eliminarArista(6, 8);
@@ -58,7 +58,7 @@ public class GrafoDPonderadoTest {
 	
 	@Test
 	public void obtenerPesoGrafoTest() {
-		GrafoDirigidoPonderado g = new GrafoDirigidoPonderado(4);
+		GrafoDPonderado g = new GrafoDPonderado(4);
 		
 		g.agregarArista(0, 1, 5);
 		g.agregarArista(1, 2, 3);
@@ -70,14 +70,14 @@ public class GrafoDPonderadoTest {
 	
 	@Test
 	public void equalsTrueGrafoConPeso() {
-		GrafoDirigidoPonderado g = new GrafoDirigidoPonderado(4);
+		GrafoDPonderado g = new GrafoDPonderado(4);
 		
 		g.agregarArista(0, 1, 51);
 		g.agregarArista(1, 2, 25);
 		g.agregarArista(2, 3, 6);
 		g.agregarArista(0, 3, 5);
 		
-		GrafoDirigidoPonderado otroGrafo = new GrafoDirigidoPonderado(4);
+		GrafoDPonderado otroGrafo = new GrafoDPonderado(4);
 		otroGrafo.agregarArista(0, 1, 51);
 		otroGrafo.agregarArista(1, 2, 25);
 		otroGrafo.agregarArista(2, 3, 6);
@@ -87,14 +87,14 @@ public class GrafoDPonderadoTest {
 	
 	@Test
 	public void equalsFalseGrafosConYSinPeso() {
-		GrafoDirigidoPonderado g = new GrafoDirigidoPonderado(4);
+		GrafoDPonderado g = new GrafoDPonderado(4);
 		
 		g.agregarArista(0, 2, 51);
 		g.agregarArista(1, 2, 25);
 		g.agregarArista(2, 3, 6);
 		g.agregarArista(1, 3, 5);
 		
-		GrafoDirigidoPonderado otroGrafo = new GrafoDirigidoPonderado(4);
+		GrafoDPonderado otroGrafo = new GrafoDPonderado(4);
 		otroGrafo.agregarArista(0, 2);
 		otroGrafo.agregarArista(1, 2);
 		otroGrafo.agregarArista(2, 3);

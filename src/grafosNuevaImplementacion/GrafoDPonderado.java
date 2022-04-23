@@ -2,9 +2,10 @@ package grafosNuevaImplementacion;
 
 import java.util.Arrays;
 
-public class GrafoDirigidoPonderado extends GrafoAbstract{
-	private int[][] pesosA;
-	public GrafoDirigidoPonderado(int vertices) {
+public class GrafoDPonderado extends GrafoAbstract{
+	protected int[][] pesosA;
+	
+	public GrafoDPonderado(int vertices) {
 		super(vertices);
 		this.pesosA = new int[vertices][vertices];
 	}
@@ -80,7 +81,7 @@ public class GrafoDirigidoPonderado extends GrafoAbstract{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GrafoDirigidoPonderado other = (GrafoDirigidoPonderado) obj;
+		GrafoDPonderado other = (GrafoDPonderado) obj;
 		if (!Arrays.deepEquals(pesosA, other.pesosA))
 			return false;
 		return true;
